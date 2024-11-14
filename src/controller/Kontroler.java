@@ -4,9 +4,11 @@
  */
 package controller;
 
+import baza.BrokerBP;
 import java.util.ArrayList;
 import java.util.List;
 import model.PoreskaStopa;
+import model.Profesor;
 import model.Proizvod;
 import model.Proizvodjac;
 
@@ -19,10 +21,11 @@ public class Kontroler {
     private List<Proizvod> proizvodi;
     private List<Proizvodjac> proizvodjaci;
     private List<PoreskaStopa> poreskeStope;
-    
+    private BrokerBP dbb;
     
 
     private Kontroler() {
+        dbb = new BrokerBP();
         proizvodi = new ArrayList<>();
         proizvodjaci = new ArrayList<>();
         poreskeStope = new ArrayList<>();
@@ -42,6 +45,17 @@ public class Kontroler {
         proizvodi.add(pr1);
         proizvodi.add(pr2);
         proizvodi.add(pr3);
+        
+        poreskeStope.add(ps1);
+        poreskeStope.add(ps2);
+        poreskeStope.add(ps3);
+        
+        proizvodjaci.add(p1);
+        proizvodjaci.add(p2);
+        proizvodjaci.add(p3);
+
+        
+        
 
     }
     
@@ -54,6 +68,18 @@ public class Kontroler {
 
     public List<Proizvod> getProizvodi() {
         return proizvodi;
+    }
+
+    public List<Proizvodjac> getProizvodjaci() {
+        return proizvodjaci;
+    }
+
+    public List<PoreskaStopa> getPoreskeStope() {
+        return poreskeStope;
+    }
+
+    public List<Profesor> vratiListuIzBaze() {
+        return dbb.ucitajIzBaze();
     }
    
     

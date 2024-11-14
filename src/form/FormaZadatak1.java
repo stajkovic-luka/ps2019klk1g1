@@ -5,19 +5,23 @@
 package form;
 
 import controller.Kontroler;
+import java.awt.Color;
 import java.util.List;
+import javax.swing.JOptionPane;
+import model.PoreskaStopa;
 import model.Proizvod;
+import model.Proizvodjac;
 
 /**
  *
  * @author lukas
  */
-public class FormaProizvod extends javax.swing.JFrame {
-
+public class FormaZadatak1 extends javax.swing.JFrame {
+    Proizvod izabraniProizvod;
     /**
      * Creates new form FormaProizvod
      */
-    public FormaProizvod() {
+    public FormaZadatak1() {
         initComponents();
         
         popuniComboBox();
@@ -40,13 +44,13 @@ public class FormaProizvod extends javax.swing.JFrame {
         jTextFieldSifra = new javax.swing.JTextField();
         jTextFieldNaziv = new javax.swing.JTextField();
         jTextFieldCena = new javax.swing.JTextField();
-        jTextFieldPoreskaStopa = new javax.swing.JTextField();
-        jTextFieldProizvodjac = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jComboBoxProizvod = new javax.swing.JComboBox<>();
+        jComboBoxPoreskaStopa = new javax.swing.JComboBox<>();
+        jComboBoxProizvodjac = new javax.swing.JComboBox<>();
+        jButtonSacuvaj = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(102, 255, 204));
 
         jLabelSifra.setText("Sifra");
 
@@ -61,6 +65,11 @@ public class FormaProizvod extends javax.swing.JFrame {
         jTextFieldSifra.setEditable(false);
 
         jButton1.setText("IZMENI");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jComboBoxProizvod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,6 +79,13 @@ public class FormaProizvod extends javax.swing.JFrame {
         jComboBoxProizvod.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jComboBoxProizvodPropertyChange(evt);
+            }
+        });
+
+        jButtonSacuvaj.setText("SACUVAJ");
+        jButtonSacuvaj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSacuvajActionPerformed(evt);
             }
         });
 
@@ -89,13 +105,16 @@ public class FormaProizvod extends javax.swing.JFrame {
                             .addComponent(jLabelProizvodjac, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTextFieldPoreskaStopa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
                             .addComponent(jTextFieldCena, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldNaziv, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldSifra)
-                            .addComponent(jTextFieldProizvodjac)))
+                            .addComponent(jComboBoxPoreskaStopa, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBoxProizvodjac, javax.swing.GroupLayout.Alignment.LEADING, 0, 305, Short.MAX_VALUE)))
                     .addComponent(jComboBoxProizvod, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButtonSacuvaj)
+                        .addGap(28, 28, 28)
+                        .addComponent(jButton1)))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -118,31 +137,64 @@ public class FormaProizvod extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelPoreskaStopa)
-                    .addComponent(jTextFieldPoreskaStopa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxPoreskaStopa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelProizvodjac)
-                    .addComponent(jTextFieldProizvodjac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxProizvodjac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
-                .addComponent(jButton1)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButtonSacuvaj))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBoxProizvodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxProizvodActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jComboBoxProizvodActionPerformed
 
     private void jComboBoxProizvodPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jComboBoxProizvodPropertyChange
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxProizvodPropertyChange
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        izabraniProizvod = (Proizvod) jComboBoxProizvod.getSelectedItem();
+        
+        jTextFieldSifra.setText(String.valueOf(izabraniProizvod.getSifra()));
+        jTextFieldNaziv.setText(izabraniProizvod.getSkraceniNaziv());
+        jTextFieldCena.setText(String.valueOf(izabraniProizvod.getCena()));
+        jComboBoxProizvodjac.setSelectedItem(izabraniProizvod.getProizvodjac());
+        jComboBoxPoreskaStopa.setSelectedItem(izabraniProizvod.getPoreskaStopa());
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButtonSacuvajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSacuvajActionPerformed
+        if (jTextFieldSifra.getText().isBlank()) {
+            JOptionPane.showMessageDialog(this, "Greska!");
+        }
+        String noviNaziv = jTextFieldNaziv.getText();
+        Double novaCena = Double.valueOf(jTextFieldCena.getText());
+        PoreskaStopa novaPoreskaStopa = (PoreskaStopa) jComboBoxPoreskaStopa.getSelectedItem();
+        Proizvodjac noviProizvodjac = (Proizvodjac) jComboBoxProizvodjac.getSelectedItem();
+        
+        izabraniProizvod.setCena(novaCena);
+        izabraniProizvod.setSkraceniNaziv(noviNaziv);
+        izabraniProizvod.setProizvodjac(noviProizvodjac);
+        izabraniProizvod.setPoreskaStopa(novaPoreskaStopa);
+                
+    }//GEN-LAST:event_jButtonSacuvajActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonSacuvaj;
+    private javax.swing.JComboBox<PoreskaStopa> jComboBoxPoreskaStopa;
     private javax.swing.JComboBox<Proizvod> jComboBoxProizvod;
+    private javax.swing.JComboBox<Proizvodjac> jComboBoxProizvodjac;
     private javax.swing.JLabel jLabelCena;
     private javax.swing.JLabel jLabelNaziv;
     private javax.swing.JLabel jLabelPoreskaStopa;
@@ -150,16 +202,25 @@ public class FormaProizvod extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelSifra;
     private javax.swing.JTextField jTextFieldCena;
     private javax.swing.JTextField jTextFieldNaziv;
-    private javax.swing.JTextField jTextFieldPoreskaStopa;
-    private javax.swing.JTextField jTextFieldProizvodjac;
     private javax.swing.JTextField jTextFieldSifra;
     // End of variables declaration//GEN-END:variables
 
     private void popuniComboBox() {
         List<Proizvod> sviProizvodi = Kontroler.getInstance().getProizvodi();
+        List<Proizvodjac> sviProizvodjaci = Kontroler.getInstance().getProizvodjaci();
+        List<PoreskaStopa> sviPoreskaStopa = Kontroler.getInstance().getPoreskeStope();
+  
         
         for (Proizvod p : sviProizvodi) {
             jComboBoxProizvod.addItem(p);
         }
+        for (PoreskaStopa ps : sviPoreskaStopa) {
+            jComboBoxPoreskaStopa.addItem(ps);
+        }
+        
+        for (Proizvodjac pr : sviProizvodjaci) {
+            jComboBoxProizvodjac.addItem(pr);
+        }
+        
     }
 }

@@ -38,7 +38,7 @@ public class Proizvodjac {
 
     @Override
     public String toString() {
-        return "Proizvodjac{" + "sifra=" + sifra + ", naziv=" + naziv + '}';
+        return naziv;
     }
     
     

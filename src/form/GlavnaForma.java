@@ -74,12 +74,13 @@ public class GlavnaForma extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItemZ2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemZ2ActionPerformed
-        // TODO add your handling code here:
+        FormaZadatak2 forma = new FormaZadatak2();
+        forma.setVisible(true);
     }//GEN-LAST:event_jMenuItemZ2ActionPerformed
 
     private void jMenuItemZ1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemZ1ActionPerformed
 //        this.dispose();  nije receno da li da se glavna forma zatvori
-        FormaProizvod forma= new FormaProizvod();
+        FormaZadatak1 forma= new FormaZadatak1();
         forma.setVisible(true);
         
         

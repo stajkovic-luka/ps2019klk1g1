@@ -48,7 +48,7 @@ public class PoreskaStopa {
 
     @Override
     public String toString() {
-        return "PoreskaStopa{" + "sifra=" + sifra + ", skraceniNaziv=" + skraceniNaziv + ", iznos=" + iznos + '}';
+        return iznos+"";
     }
     
     
