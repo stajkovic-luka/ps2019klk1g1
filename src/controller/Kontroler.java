@@ -11,6 +11,7 @@ import model.PoreskaStopa;
 import model.Profesor;
 import model.Proizvod;
 import model.Proizvodjac;
+import model.Zvanje;
 
 /**
  *
@@ -80,6 +81,10 @@ public class Kontroler {
 
     public List<Profesor> vratiListuIzBaze() {
         return dbb.ucitajIzBaze();
+    }
+
+    public void azurirajBazu(long id, String ime, String prezime, Zvanje zvanje) {
+        dbb.azurirajUBazi(id,ime,prezime,zvanje);
     }
    
     

@@ -4,6 +4,7 @@
  */
 package form;
 
+import controller.Kontroler;
 import model.Profesor;
 import model.Status;
 import model.Zvanje;
@@ -22,6 +23,7 @@ public class FormaZadatak2Izmena extends javax.swing.JDialog {
         this.profesorZaIzmenu = profesorZaIzmenu;
         initComponents();
         popuniCombobox();
+        popuniOstalo();
     }
 
     /**
@@ -39,7 +41,7 @@ public class FormaZadatak2Izmena extends javax.swing.JDialog {
         jTextFieldPrezime = new javax.swing.JTextField();
         jLabelZvanje = new javax.swing.JLabel();
         jLabelStatus = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelId = new javax.swing.JLabel();
         jTextFieldId = new javax.swing.JTextField();
         jComboBoxZvanje = new javax.swing.JComboBox<>();
         jComboBoxStatus = new javax.swing.JComboBox<>();
@@ -55,7 +57,14 @@ public class FormaZadatak2Izmena extends javax.swing.JDialog {
 
         jLabelStatus.setText("Status");
 
-        jLabel1.setText("ID");
+        jLabelId.setText("ID");
+
+        jTextFieldId.setEditable(false);
+        jTextFieldId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldIdActionPerformed(evt);
+            }
+        });
 
         jButtonSacuvajPromene.setText("SACUVAJ PROMENE");
         jButtonSacuvajPromene.addActionListener(new java.awt.event.ActionListener() {
@@ -69,12 +78,7 @@ public class FormaZadatak2Izmena extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabelIme, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(jTextFieldIme))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -82,34 +86,41 @@ public class FormaZadatak2Izmena extends javax.swing.JDialog {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jLabelPrezime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabelZvanje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabelId, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(35, 35, 35)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextFieldPrezime)
                                     .addComponent(jTextFieldId)
                                     .addComponent(jComboBoxZvanje, 0, 255, Short.MAX_VALUE)
-                                    .addComponent(jComboBoxStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-                .addContainerGap(44, Short.MAX_VALUE))
+                                    .addComponent(jComboBoxStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelIme, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldIme, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(jLabelId)
                     .addComponent(jTextFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelIme)
                     .addComponent(jTextFieldIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelPrezime)
                     .addComponent(jTextFieldPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelZvanje)
                     .addComponent(jComboBoxZvanje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -126,8 +137,19 @@ public class FormaZadatak2Izmena extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSacuvajPromeneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSacuvajPromeneActionPerformed
-        // TODO add your handling code here:
+        long id = profesorZaIzmenu.getId();
+        String ime = jTextFieldIme.getText();
+        String prezime = jTextFieldPrezime.getText();
+        Zvanje zvanje = Zvanje.valueOf((String)jComboBoxZvanje.getSelectedItem());
+       
+
+
+        Kontroler.getInstance().azurirajBazu(id,ime,prezime,zvanje);
     }//GEN-LAST:event_jButtonSacuvajPromeneActionPerformed
+
+    private void jTextFieldIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldIdActionPerformed
 
     
 
@@ -135,7 +157,7 @@ public class FormaZadatak2Izmena extends javax.swing.JDialog {
     private javax.swing.JButton jButtonSacuvajPromene;
     private javax.swing.JComboBox<String> jComboBoxStatus;
     private javax.swing.JComboBox<String> jComboBoxZvanje;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelId;
     private javax.swing.JLabel jLabelIme;
     private javax.swing.JLabel jLabelPrezime;
     private javax.swing.JLabel jLabelStatus;
@@ -147,10 +169,20 @@ public class FormaZadatak2Izmena extends javax.swing.JDialog {
 
     private void popuniCombobox() {
         for (Zvanje z : Zvanje.values()) {
-            jComboBoxZvanje.addItem(z+"");
+            jComboBoxZvanje.addItem(String.valueOf(z));
         }
         for (Status s : Status.values()) {
-            jComboBoxStatus.addItem(s+"");
+            jComboBoxStatus.addItem(String.valueOf(s));
         }
+    }
+
+    private void popuniOstalo() {
+        jTextFieldId.setText(String.valueOf(profesorZaIzmenu.getId()));
+        jTextFieldIme.setText(profesorZaIzmenu.getIme());
+        jTextFieldPrezime.setText(profesorZaIzmenu.getPrezime());
+        jComboBoxZvanje.setSelectedItem(profesorZaIzmenu.getZvanje()+"");
+        jComboBoxStatus.setSelectedItem(profesorZaIzmenu.getStatus()+"");
+        
+        
     }
 }

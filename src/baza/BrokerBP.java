@@ -45,5 +45,25 @@ public class BrokerBP {
     
         return listaProf;
     }
+
+    public void azurirajUBazi(long id, String ime, String prezime, Zvanje zvanje) {
+        String upit = "UPDATE profesor\n" +
+                    "SET ime=?, prezime=?, zvanje=?\n" +
+                    "WHERE id = ?;";
+        
+        try {   
+            PreparedStatement ps = Konekcija.getInstance().getConnection().prepareStatement(upit);
+            ps.setString(1, ime);
+            ps.setString(2, prezime);
+            ps.setString(3, String.valueOf(zvanje));
+            ps.setLong(4, id);
+            
+            ps.executeUpdate();
+            //Komit u bazi!
+            Konekcija.getInstance().getConnection().commit();
+        } catch (SQLException ex) {
+            Logger.getLogger(BrokerBP.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
 }
