@@ -6,6 +6,7 @@ package form;
 
 import controller.Kontroler;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import model.Predaje;
 import model.Profesor;
@@ -118,6 +119,16 @@ public class FormaZadatak3 extends javax.swing.JDialog {
         }
         
         List<Predaje> angazovanja = Kontroler.getInstance().vratiListuAngazovanja(selektovaniProfesori);
+        
+        //METODA ZA SORTIRANJE!
+        angazovanja.sort(
+        //BITNO! 
+        Comparator.comparing((Predaje p) -> p.getProfesor().getPrezime()).thenComparing((Predaje p) -> p.getProfesor().getIme()).thenComparing((Predaje p) -> p.getPredmet().getNaziv())
+        );
+        
+     
+        
+        //formira podatke u tabeli
         ModelTabeleAngazovanja mta = new ModelTabeleAngazovanja(angazovanja);
         jTableAngazovanje.setModel(mta);
         
