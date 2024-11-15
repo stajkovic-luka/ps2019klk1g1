@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.util.Objects;
+
 /**
  *
  * @author lukas
@@ -70,7 +72,43 @@ public class Profesor {
     public String toString() {
         return "Profesor{" + "id=" + id + ", ime=" + ime + ", prezime=" + prezime + ", zvanje=" + zvanje + ", status=" + status + '}';
     }
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Profesor other = (Profesor) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (!Objects.equals(this.ime, other.ime)) {
+            return false;
+        }
+        if (!Objects.equals(this.prezime, other.prezime)) {
+            return false;
+        }
+        if (this.zvanje != other.zvanje) {
+            return false;
+        }
+        return this.status == other.status;
+    }
+
+  
+
+
     
     
     

@@ -15,7 +15,7 @@ import model.Profesor;
  */
 public class ModelTabeleProfesor extends AbstractTableModel{
     private List<Profesor> listaProfesora;
-    private String[] kolone = {"id","ime","prezime","zvanje"};
+    private String[] kolone = {"id","ime","prezime","zvanje","status"};
     
     ModelTabeleProfesor(List<Profesor> listaProfesora){
         this.listaProfesora = listaProfesora;

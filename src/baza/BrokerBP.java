@@ -11,6 +11,8 @@ import model.Profesor;
 import baza.Konekcija;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Predaje;
+import model.Predmet;
 import model.Status;
 import model.Zvanje;
 import model.Profesor;
@@ -36,7 +38,8 @@ public class BrokerBP {
                 
                 Profesor p = new Profesor(id, ime, prezime, zvanje, status);
                 listaProf.add(p);
-       
+                
+                
                 
             }
         } catch (SQLException ex) {
@@ -64,6 +67,38 @@ public class BrokerBP {
         } catch (SQLException ex) {
             Logger.getLogger(BrokerBP.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public List<Predaje> vratiListuAngazovanjaIzBaze(List<Profesor> selektovaniProfesori) {
+        List<Predaje> angazovanja = new ArrayList<>();
+        
+        for (Profesor prof : selektovaniProfesori) {
+            String upit = "SELECT * FROM predaje\n" +
+                      "JOIN profesor on predaje.profesor = profesor.id\n" +
+                      "JOIN predmet ON predaje.predmet = predmet.id\n" +
+                      "WHERE predaje.profesor = "+prof.getId();
+        
+            try {
+                Statement st = Konekcija.getInstance().getConnection().createStatement();
+                ResultSet rs = st.executeQuery(upit);
+                while (rs.next()) {                    
+                    int idPredmeta = rs.getInt("predmet.id");
+                    String nazivPredmeta = rs.getString("predmet.naziv");
+                    int espb = rs.getInt("predmet.espb");
+                    
+                    Predmet predmet = new Predmet(idPredmeta, nazivPredmeta, espb);
+                    
+                    int idAngazovanja = rs.getInt("predaje.id");
+                    Predaje a = new Predaje(idAngazovanja,predmet,prof);
+                    angazovanja.add(a);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(BrokerBP.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+                
+                
+        return angazovanja;
     }
     
 }

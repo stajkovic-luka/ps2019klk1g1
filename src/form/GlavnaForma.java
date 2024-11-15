@@ -53,6 +53,11 @@ public class GlavnaForma extends javax.swing.JFrame {
         jMenuKolokvijum.add(jMenuItemZ2);
 
         jMenuItemZ3.setText("Zadatak 3");
+        jMenuItemZ3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemZ3ActionPerformed(evt);
+            }
+        });
         jMenuKolokvijum.add(jMenuItemZ3);
 
         jMenuBar1.add(jMenuKolokvijum);
@@ -85,6 +90,11 @@ public class GlavnaForma extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jMenuItemZ1ActionPerformed
+
+    private void jMenuItemZ3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemZ3ActionPerformed
+        FormaZadatak3 forma = new FormaZadatak3(this, true);
+        forma.setVisible(true);
+    }//GEN-LAST:event_jMenuItemZ3ActionPerformed
 
     /**
      * @param args the command line arguments

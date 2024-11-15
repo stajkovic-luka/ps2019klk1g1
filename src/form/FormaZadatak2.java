@@ -8,6 +8,7 @@ import controller.Kontroler;
 import java.util.List;
 import javax.swing.JOptionPane;
 import model.Profesor;
+import model.Status;
 
 /**
  *
@@ -91,9 +92,15 @@ public class FormaZadatak2 extends javax.swing.JFrame {
         if (selektovaniRed == -1) {
             JOptionPane.showMessageDialog(this, "Morate selektovati red za izmenu!", "Greska", JOptionPane.ERROR_MESSAGE);
         }else{
-        Profesor profesorZaIzmenu = sviProfesori.get(selektovaniRed);
-        FormaZadatak2Izmena formaIzmena = new FormaZadatak2Izmena(this, true, profesorZaIzmenu);
-        formaIzmena.setVisible(true);
+                Profesor profesorZaIzmenu = sviProfesori.get(selektovaniRed);
+            if (profesorZaIzmenu.getStatus().equals(Status.AKTIVAN)) {
+                FormaZadatak2Izmena formaIzmena = new FormaZadatak2Izmena(this, true, profesorZaIzmenu);
+                formaIzmena.setVisible(true);
+                
+            }else{
+                JOptionPane.showMessageDialog(this, "Greska, profesor mora biti aktivan za izmenu!");
+            }
+            
         }
     }//GEN-LAST:event_jButtonIzmeniActionPerformed
 
@@ -105,7 +112,7 @@ public class FormaZadatak2 extends javax.swing.JFrame {
     private javax.swing.JTable jTableProfesor;
     // End of variables declaration//GEN-END:variables
 
-    private void popuniTabelu() {
+    public void popuniTabelu() {
          sviProfesori = Kontroler.getInstance().vratiListuIzBaze();
         
         ModelTabeleProfesor mtp = new ModelTabeleProfesor(sviProfesori);
@@ -113,4 +120,6 @@ public class FormaZadatak2 extends javax.swing.JFrame {
         
         
     }
+
+ 
 }

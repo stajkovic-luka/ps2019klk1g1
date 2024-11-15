@@ -15,12 +15,14 @@ import model.Zvanje;
  */
 public class FormaZadatak2Izmena extends javax.swing.JDialog {
     private Profesor profesorZaIzmenu;
+    private FormaZadatak2 zad2;
     /**
      * Creates new form FormaZadatak2Izmena
      */
     public FormaZadatak2Izmena(java.awt.Frame parent, boolean modal, Profesor profesorZaIzmenu) {
         super(parent, modal);
         this.profesorZaIzmenu = profesorZaIzmenu;
+        this.zad2 = (FormaZadatak2) parent;
         initComponents();
         popuniCombobox();
         popuniOstalo();
@@ -145,6 +147,8 @@ public class FormaZadatak2Izmena extends javax.swing.JDialog {
 
 
         Kontroler.getInstance().azurirajBazu(id,ime,prezime,zvanje);
+        zad2.popuniTabelu();
+        this.dispose();
     }//GEN-LAST:event_jButtonSacuvajPromeneActionPerformed
 
     private void jTextFieldIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIdActionPerformed
